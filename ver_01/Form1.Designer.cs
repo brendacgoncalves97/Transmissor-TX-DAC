@@ -49,6 +49,12 @@
             this.label5 = new System.Windows.Forms.Label();
             this.btAtualizarPortas = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.btnSaidaPwm = new System.Windows.Forms.Button();
+            this.SaidaPWM = new System.Windows.Forms.NumericUpDown();
+            this.label9 = new System.Windows.Forms.Label();
+            this.btnSet20mA = new System.Windows.Forms.Button();
+            this.Set20mA = new System.Windows.Forms.NumericUpDown();
+            this.label8 = new System.Windows.Forms.Label();
             this.btn4mA = new System.Windows.Forms.Button();
             this.Set4Ma = new System.Windows.Forms.NumericUpDown();
             this.label7 = new System.Windows.Forms.Label();
@@ -59,21 +65,15 @@
             this.LeituraMin = new System.Windows.Forms.NumericUpDown();
             this.label2 = new System.Windows.Forms.Label();
             this.btLimparJanelas = new System.Windows.Forms.Button();
-            this.label8 = new System.Windows.Forms.Label();
-            this.Set20mA = new System.Windows.Forms.NumericUpDown();
-            this.btnSet20mA = new System.Windows.Forms.Button();
-            this.label9 = new System.Windows.Forms.Label();
-            this.SaidaPWM = new System.Windows.Forms.NumericUpDown();
-            this.btnSaidaPwm = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.txtLeituraCorrigida)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtLeituraPura)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtOffSet)).BeginInit();
             this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.SaidaPWM)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Set20mA)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Set4Ma)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.LeituraMax)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.LeituraMin)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.Set20mA)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.SaidaPWM)).BeginInit();
             this.SuspendLayout();
             // 
             // btConnect
@@ -314,6 +314,62 @@
             this.panel1.Size = new System.Drawing.Size(598, 412);
             this.panel1.TabIndex = 31;
             // 
+            // btnSaidaPwm
+            // 
+            this.btnSaidaPwm.Location = new System.Drawing.Point(12, 346);
+            this.btnSaidaPwm.Name = "btnSaidaPwm";
+            this.btnSaidaPwm.Size = new System.Drawing.Size(86, 36);
+            this.btnSaidaPwm.TabIndex = 42;
+            this.btnSaidaPwm.Text = "Saída PWM";
+            this.btnSaidaPwm.UseVisualStyleBackColor = true;
+            // 
+            // SaidaPWM
+            // 
+            this.SaidaPWM.Font = new System.Drawing.Font("Microsoft Sans Serif", 18.75F, System.Drawing.FontStyle.Bold);
+            this.SaidaPWM.Location = new System.Drawing.Point(108, 346);
+            this.SaidaPWM.Name = "SaidaPWM";
+            this.SaidaPWM.Size = new System.Drawing.Size(120, 36);
+            this.SaidaPWM.TabIndex = 41;
+            this.SaidaPWM.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
+            this.label9.Location = new System.Drawing.Point(105, 327);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(70, 16);
+            this.label9.TabIndex = 40;
+            this.label9.Text = "Resultado";
+            // 
+            // btnSet20mA
+            // 
+            this.btnSet20mA.Location = new System.Drawing.Point(334, 277);
+            this.btnSet20mA.Name = "btnSet20mA";
+            this.btnSet20mA.Size = new System.Drawing.Size(89, 34);
+            this.btnSet20mA.TabIndex = 39;
+            this.btnSet20mA.Text = "Set 20mA";
+            this.btnSet20mA.UseVisualStyleBackColor = true;
+            // 
+            // Set20mA
+            // 
+            this.Set20mA.Font = new System.Drawing.Font("Microsoft Sans Serif", 18.75F, System.Drawing.FontStyle.Bold);
+            this.Set20mA.Location = new System.Drawing.Point(432, 277);
+            this.Set20mA.Name = "Set20mA";
+            this.Set20mA.Size = new System.Drawing.Size(120, 36);
+            this.Set20mA.TabIndex = 38;
+            this.Set20mA.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
+            this.label8.Location = new System.Drawing.Point(429, 258);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(70, 16);
+            this.label8.TabIndex = 37;
+            this.label8.Text = "Resultado";
+            // 
             // btn4mA
             // 
             this.btn4mA.Location = new System.Drawing.Point(12, 275);
@@ -350,6 +406,7 @@
             this.btnMax.TabIndex = 33;
             this.btnMax.Text = "Leitura Máxima";
             this.btnMax.UseVisualStyleBackColor = true;
+            this.btnMax.Click += new System.EventHandler(this.btnMax_Click);
             // 
             // LeituraMax
             // 
@@ -383,6 +440,7 @@
             this.btnMin.TabIndex = 30;
             this.btnMin.Text = "Leitura Mínima";
             this.btnMin.UseVisualStyleBackColor = true;
+            this.btnMin.Click += new System.EventHandler(this.btnMin_Click);
             // 
             // LeituraMin
             // 
@@ -418,62 +476,6 @@
             this.btLimparJanelas.UseVisualStyleBackColor = true;
             this.btLimparJanelas.Click += new System.EventHandler(this.btLimparJanelas_Click);
             // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
-            this.label8.Location = new System.Drawing.Point(429, 258);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(70, 16);
-            this.label8.TabIndex = 37;
-            this.label8.Text = "Resultado";
-            // 
-            // Set20mA
-            // 
-            this.Set20mA.Font = new System.Drawing.Font("Microsoft Sans Serif", 18.75F, System.Drawing.FontStyle.Bold);
-            this.Set20mA.Location = new System.Drawing.Point(432, 277);
-            this.Set20mA.Name = "Set20mA";
-            this.Set20mA.Size = new System.Drawing.Size(120, 36);
-            this.Set20mA.TabIndex = 38;
-            this.Set20mA.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // btnSet20mA
-            // 
-            this.btnSet20mA.Location = new System.Drawing.Point(334, 277);
-            this.btnSet20mA.Name = "btnSet20mA";
-            this.btnSet20mA.Size = new System.Drawing.Size(89, 34);
-            this.btnSet20mA.TabIndex = 39;
-            this.btnSet20mA.Text = "Set 20mA";
-            this.btnSet20mA.UseVisualStyleBackColor = true;
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
-            this.label9.Location = new System.Drawing.Point(105, 327);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(70, 16);
-            this.label9.TabIndex = 40;
-            this.label9.Text = "Resultado";
-            // 
-            // SaidaPWM
-            // 
-            this.SaidaPWM.Font = new System.Drawing.Font("Microsoft Sans Serif", 18.75F, System.Drawing.FontStyle.Bold);
-            this.SaidaPWM.Location = new System.Drawing.Point(108, 346);
-            this.SaidaPWM.Name = "SaidaPWM";
-            this.SaidaPWM.Size = new System.Drawing.Size(120, 36);
-            this.SaidaPWM.TabIndex = 41;
-            this.SaidaPWM.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // btnSaidaPwm
-            // 
-            this.btnSaidaPwm.Location = new System.Drawing.Point(12, 346);
-            this.btnSaidaPwm.Name = "btnSaidaPwm";
-            this.btnSaidaPwm.Size = new System.Drawing.Size(86, 36);
-            this.btnSaidaPwm.TabIndex = 42;
-            this.btnSaidaPwm.Text = "Saída PWM";
-            this.btnSaidaPwm.UseVisualStyleBackColor = true;
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -499,11 +501,11 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtOffSet)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.SaidaPWM)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Set20mA)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Set4Ma)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.LeituraMax)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.LeituraMin)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.Set20mA)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.SaidaPWM)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

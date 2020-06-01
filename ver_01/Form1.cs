@@ -495,6 +495,16 @@ namespace ver_01
 
                     txtOffSet.Value = Convert.ToInt32(resultado);
                 }
+                if (numeroComando == 4)
+                {
+                    string s = listaResposta[0].ToString();
+                    s = s.PadLeft(3, '0');
+                    LeituraMin.Text = s;
+                }
+                if (numeroComando == 5)
+                {
+
+                }
             });            
         } 
 
@@ -536,5 +546,16 @@ namespace ver_01
         }
         #endregion
 
+        private void btnMin_Click(object sender, EventArgs e)
+        {
+            numeroBt = 4;
+            _isBotao = true;
+        }
+
+        private void btnMax_Click(object sender, EventArgs e)
+        {
+            numeroBt = 5;
+            _isBotao = true;
+        }
     }
 }
