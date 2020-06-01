@@ -52,7 +52,7 @@ namespace ver_01
         public void AtualizaListaPortas()
         {
             Thread.Sleep(500);
-            Invoke((Action)delegate 
+            Invoke((Action)delegate
             {
                 bool _isDiferente = false;
                 var portas = SerialPort.GetPortNames().OrderBy(x => x).ToList();
@@ -110,7 +110,7 @@ namespace ver_01
                 {
                     btConnect.PerformClick();
                 }
-            });            
+            });
         }
 
         public void ListaComandos()
@@ -152,7 +152,7 @@ namespace ver_01
                 if (_isConnected && _isCommunicaticating)
                 {
                     labelConexao.Text = "Pronto para o uso";
-                    panel1.Enabled = true;                    
+                    panel1.Enabled = true;
                 }
                 if (_Desliga)
                 {
@@ -176,8 +176,8 @@ namespace ver_01
                     comboBoxPortas.Enabled = true;
                     btAtualizarPortas.Enabled = true;
                 }
-            });            
-        } 
+            });
+        }
 
         public void verificandoErro(List<byte> lista)
         {
@@ -196,7 +196,7 @@ namespace ver_01
                 numeroErros++;
                 Invoke((Action)delegate { labelNumeroErros.Text = numeroErros.ToString(); });
             }
-            if(numeroErros > 3)
+            if (numeroErros > 3)
             {
                 Invoke((Action)delegate { btConnect.PerformClick(); });
                 MessageBox.Show("Numero de erros passou do valor muito elevado!", "Erro!", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -358,7 +358,7 @@ namespace ver_01
                             listaResposta.Add(soma);
                             i = 0;
                             soma = 0;
-                        }                        
+                        }
                     }
                     i++;
                 }
@@ -373,11 +373,11 @@ namespace ver_01
 
         private void writeSerial()
         {
-            if(_isCommunicaticating)
+            if (_isCommunicaticating)
             {
-                if(_isBotao)
+                if (_isBotao)
                 {
-                    if(numeroBt != 3)
+                    if (numeroBt != 3)
                     {
                         numeroComando = numeroBt;
                         byte[] b = new byte[] { Convert.ToByte(listaComandosInt[numeroComando]) };
@@ -386,8 +386,8 @@ namespace ver_01
                         if (_isBotao) _isBotao = false;
                     }
                     else
-                    {                        
-                        if(isLeituraPura)
+                    {
+                        if (isLeituraPura)
                         {
                             numeroComando = numeroBt;
                             string padrao = maskedTextBoxPadrao.Text.Remove(2, 1);
@@ -420,14 +420,14 @@ namespace ver_01
                         }
                     }
                 }
-                else if(_isAutomatic)
+                else if (_isAutomatic)
                 {
                     numeroComando = 0;
                     byte[] b = new byte[] { Convert.ToByte(listaComandosInt[numeroComando]) };
                     serialPort.Write(b, 0, 1);
                 }
                 _verificaErro = true;
-                numeroRepeticoes++;                                
+                numeroRepeticoes++;
                 Invoke((Action)delegate { labelNumeroMedicoes.Text = numeroRepeticoes.ToString(); });
             }
             Thread.Sleep(500);
@@ -437,7 +437,7 @@ namespace ver_01
         {
             Invoke((Action)delegate
             {
-                if(listaResposta.Count > 0)
+                if (listaResposta.Count > 0)
                 {
                     if (listaResposta[0] == 0)
                     {
@@ -449,14 +449,14 @@ namespace ver_01
                 {
                     string s = listaResposta[0].ToString();
                     s = s.PadLeft(4, '0');
-                    s = s.Insert((s.Length - 2), ",");
+                    s = s.Insert((s.Length - 1), ",");
                     txtLeituraCorrigida.Text = s;
                 }
                 if (numeroComando == 1)
                 {
                     string s = listaResposta[0].ToString();
                     s = s.PadLeft(4, '0');
-                    s = s.Insert((s.Length - 2), ",");
+                    //s = s.Insert((s.Length - 2), ",");
                     txtLeituraPura.Text = s;
                     leituraPura = listaResposta[0];
                 }
@@ -465,7 +465,7 @@ namespace ver_01
                     byte B1 = listaRetorno[1];
                     byte B2 = listaRetorno[2];
                     short answer = (short)((B1 << 8) | B2);
-           
+
                     string result = "";
                     if (answer < 0)
                     {
@@ -482,7 +482,7 @@ namespace ver_01
                     string padrao = maskedTextBoxPadrao.Text.Remove(2, 1);
                     int valorAjustado = Convert.ToInt32(padrao) - leituraPura;
                     string resultado = "";
-                    if(valorAjustado < 0)
+                    if (valorAjustado < 0)
                     {
                         resultado = (valorAjustado * -1).ToString().PadLeft(4, '0');
                         resultado = resultado.PadLeft(5, '-');
@@ -503,16 +503,36 @@ namespace ver_01
                 }
                 if (numeroComando == 5)
                 {
-
+                    string s = listaResposta[0].ToString();
+                    s = s.PadLeft(4, '0');
+                    LeituraMax.Text = s;
                 }
-            });            
-        } 
+                if (numeroComando == 6)
+                {
+                    string s = listaResposta[0].ToString();
+                    s = s.PadLeft(4, '0');
+                    Set4Ma.Text = s;
+                }
+                if (numeroComando == 7)
+                {
+                    string s = listaResposta[0].ToString();
+                    s = s.PadLeft(4, '0');
+                    Set20mA.Text = s;
+                }
+                if (numeroComando == 8)
+                {
+                    string s = listaResposta[0].ToString();
+                    s = s.PadLeft(4, '0');
+                    SaidaPWM.Text = s;
+                }
+            });
+        }
 
         #endregion
 
         #region Botoes
         private void btLeituraCorrigida_Click(object sender, EventArgs e)
-        {            
+        {
             _isAutomatic = !_isAutomatic;
             if (_isAutomatic)
                 btLeituraCorrigida.Text = "Leituras \n Parar";
@@ -535,7 +555,7 @@ namespace ver_01
         private void btAjusteOffSet_Click(object sender, EventArgs e)
         {
             bool isPadrao = Regex.IsMatch(maskedTextBoxPadrao.Text, @"\d{2}.\d{2}") && maskedTextBoxPadrao.Text != "00.00";
-            if(!isPadrao)
+            if (!isPadrao)
                 MessageBox.Show("Formato do Valor Padrão não é válido", "Erro!", MessageBoxButtons.OK, MessageBoxIcon.Error);
             else if (!isLeituraPura)
             {
@@ -555,6 +575,24 @@ namespace ver_01
         private void btnMax_Click(object sender, EventArgs e)
         {
             numeroBt = 5;
+            _isBotao = true;
+        }
+
+        private void btn4mA_Click(object sender, EventArgs e)
+        {
+            numeroBt = 6;
+            _isBotao = true;
+        }
+
+        private void btnSet20mA_Click(object sender, EventArgs e)
+        {
+            numeroBt = 7;
+            _isBotao = true;
+        }
+
+        private void btnSaidaPwm_Click(object sender, EventArgs e)
+        {
+            numeroBt = 8;
             _isBotao = true;
         }
     }

@@ -136,7 +136,6 @@
             // 
             // txtLeituraCorrigida
             // 
-            this.txtLeituraCorrigida.DecimalPlaces = 1;
             this.txtLeituraCorrigida.Font = new System.Drawing.Font("Microsoft Sans Serif", 18.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtLeituraCorrigida.Location = new System.Drawing.Point(108, 33);
             this.txtLeituraCorrigida.Name = "txtLeituraCorrigida";
@@ -322,6 +321,7 @@
             this.btnSaidaPwm.TabIndex = 42;
             this.btnSaidaPwm.Text = "Saída PWM";
             this.btnSaidaPwm.UseVisualStyleBackColor = true;
+            this.btnSaidaPwm.Click += new System.EventHandler(this.btnSaidaPwm_Click);
             // 
             // SaidaPWM
             // 
@@ -350,11 +350,17 @@
             this.btnSet20mA.TabIndex = 39;
             this.btnSet20mA.Text = "Set 20mA";
             this.btnSet20mA.UseVisualStyleBackColor = true;
+            this.btnSet20mA.Click += new System.EventHandler(this.btnSet20mA_Click);
             // 
             // Set20mA
             // 
             this.Set20mA.Font = new System.Drawing.Font("Microsoft Sans Serif", 18.75F, System.Drawing.FontStyle.Bold);
             this.Set20mA.Location = new System.Drawing.Point(432, 277);
+            this.Set20mA.Maximum = new decimal(new int[] {
+            65535,
+            0,
+            0,
+            0});
             this.Set20mA.Name = "Set20mA";
             this.Set20mA.Size = new System.Drawing.Size(120, 36);
             this.Set20mA.TabIndex = 38;
@@ -378,11 +384,17 @@
             this.btn4mA.TabIndex = 36;
             this.btn4mA.Text = "Set 4mA";
             this.btn4mA.UseVisualStyleBackColor = true;
+            this.btn4mA.Click += new System.EventHandler(this.btn4mA_Click);
             // 
             // Set4Ma
             // 
             this.Set4Ma.Font = new System.Drawing.Font("Microsoft Sans Serif", 18.75F, System.Drawing.FontStyle.Bold);
             this.Set4Ma.Location = new System.Drawing.Point(108, 275);
+            this.Set4Ma.Maximum = new decimal(new int[] {
+            65535,
+            0,
+            0,
+            0});
             this.Set4Ma.Name = "Set4Ma";
             this.Set4Ma.Size = new System.Drawing.Size(120, 36);
             this.Set4Ma.TabIndex = 35;
