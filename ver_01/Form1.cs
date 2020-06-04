@@ -154,7 +154,7 @@ namespace ver_01
                     labelConexao.Text = "Pronto para o uso";
                     panel1.Enabled = true;
                 }
-                if (_Desliga)
+                else if (_Desliga)
                 {
                     _isConnected = false;
                     _isCommunicaticating = false;
@@ -177,6 +177,19 @@ namespace ver_01
                     btAtualizarPortas.Enabled = true;
                 }
             });
+        }
+
+        public void DecipherAnswer()
+        {
+            if (listaComandosAtivacao[0] == 170)
+            {
+                byte[] send = new byte[1] { 170 };
+                serialPort.Read(send, 0, 1);
+
+                _isCommunicaticating = true;
+
+                AtualizaGeral();
+            }
         }
 
         public void verificandoErro(List<byte> lista)
@@ -313,6 +326,7 @@ namespace ver_01
                             var buff = new byte[read];
                             serialPort.Read(buff, 0, read);
                             listaRetorno.AddRange(buff.ToList());
+                            DecipherAnswer();
                         }
                     }
                 }
