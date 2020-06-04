@@ -36,7 +36,7 @@ namespace ver_01
         private List<string> listaComandosHex;
         private List<int> listaComandosInt;
         private List<int> listaComandosNumeroEsperado;
-        private List<int> listaComandosAtivacao = new List<int>();
+        private List<byte> listaComandosAtivacao = new List<byte>();
         #endregion
 
         #region Suporte
@@ -121,13 +121,13 @@ namespace ver_01
 
             comands.Add("80"); comandsInt.Add(128); answer.Add(4);
             comands.Add("81"); comandsInt.Add(129); answer.Add(4);
-            //comands.Add("82"); comandsInt.Add(130); answer.Add(3);
+            comands.Add("82"); comandsInt.Add(130); answer.Add(3);
             comands.Add("83"); comandsInt.Add(131); answer.Add(3);
-            comands.Add("84"); comandsInt.Add(54); answer.Add(3);
-            comands.Add("85"); comandsInt.Add(55); answer.Add(5);
-            comands.Add("86"); comandsInt.Add(56); answer.Add(5);
-            comands.Add("87"); comandsInt.Add(57); answer.Add(5);
-            comands.Add("88"); comandsInt.Add(58); answer.Add(4);
+            comands.Add("84"); comandsInt.Add(132); answer.Add(3);
+            comands.Add("85"); comandsInt.Add(133); answer.Add(4);
+            comands.Add("86"); comandsInt.Add(134); answer.Add(4);
+            comands.Add("87"); comandsInt.Add(135); answer.Add(4);
+            comands.Add("88"); comandsInt.Add(136); answer.Add(4);
 
             listaComandosHex = comands;
             listaComandosInt = comandsInt;
@@ -149,7 +149,7 @@ namespace ver_01
                     comboBoxPortas.Enabled = false;
                     panel1.Enabled = true;
                 }
-                if (_isConnected && _isCommunicaticating)
+                else if (_isConnected && _isCommunicaticating)
                 {
                     labelConexao.Text = "Pronto para o uso";
                     panel1.Enabled = true;
@@ -336,7 +336,7 @@ namespace ver_01
                         {
                             try
                             {
-                                serialPort.Read(new[] { Convert.ToByte(listaComandosAtivacao[0]) }, 0, 1);
+                                serialPort.Write(new[] { Convert.ToByte(listaComandosAtivacao[0]) }, 0, 1);
                                 _isCommunicaticating = true;
                                 AtualizaGeral();
                                 Thread.Sleep(500);
@@ -504,19 +504,19 @@ namespace ver_01
                 if (numeroComando == 5)
                 {
                     string s = listaResposta[0].ToString();
-                    s = s.PadLeft(5, '0');
+                    s = s.PadLeft(4, '0');
                     LeituraMax.Text = s;
                 }
                 if (numeroComando == 6)
                 {
                     string s = listaResposta[0].ToString();
-                    s = s.PadLeft(5, '0');
+                    s = s.PadLeft(4, '0');
                     Set4Ma.Text = s;
                 }
                 if (numeroComando == 7)
                 {
                     string s = listaResposta[0].ToString();
-                    s = s.PadLeft(5, '0');
+                    s = s.PadLeft(4, '0');
                     Set20mA.Text = s;
                 }
                 if (numeroComando == 8)
