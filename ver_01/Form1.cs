@@ -32,6 +32,7 @@ namespace ver_01
         private int numeroErros = 0;
         private int leituraPura = 0;
         private int delaySend = 1000;
+        private int numTentativas = 0;
 
         private List<string> listaComandosHex;
         private List<int> listaComandosInt;
@@ -134,7 +135,7 @@ namespace ver_01
             listaComandosNumeroEsperado = answer;
 
             //listaComandosAtivacao = new List<byte>();
-            listaComandosAtivacao.Add(170);
+            //listaComandosAtivacao.Add(170);
         }
 
         public void AtualizaGeral()
@@ -474,6 +475,7 @@ namespace ver_01
                     txtLeituraPura.Text = s;
                     leituraPura = listaResposta[0];
                 }
+                // Aqui vai ter 3 tentativas de conexão com o aparelho, ao final se não obter sucesso vem a mensagem de erro
                 if (numeroComando == 2)
                 {
                     byte B1 = listaRetorno[1];
