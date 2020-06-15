@@ -9,6 +9,7 @@ using System.Windows.Forms;
 using System.IO.Ports;
 using System.Threading;
 using System.Text.RegularExpressions;
+using System.Diagnostics;
 
 namespace ver_01
 {
@@ -145,10 +146,10 @@ namespace ver_01
                 if (_isConnected && !_isCommunicaticating)
                 {
                     btConnect.Text = "Desconectar";
-                    labelConexao.Text = "Esperando comunicação com a máquina";
+                    labelConexao.Text = "Aguardando resposta da máquina";
                     btAtualizarPortas.Enabled = false;
                     comboBoxPortas.Enabled = false;
-                    panel1.Enabled = true;
+                    //panel1.Enabled = true;
                 }
                 else if (_isConnected && _isCommunicaticating)
                 {
@@ -245,11 +246,13 @@ namespace ver_01
 
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
-            if (_isConnected == true)
-            {
-                btConnect.PerformClick();
-                Thread.Sleep(500);
-            }
+            //if (_isConnected == true)
+            //{
+            //    btConnect.PerformClick();
+            //    Thread.Sleep(500);
+            //}
+
+            Process.GetCurrentProcess().Kill();
         }
 
         #endregion
@@ -580,7 +583,7 @@ namespace ver_01
                 panel1.Enabled = false;
             }
         }
-        #endregion
+
 
         private void btnMin_Click(object sender, EventArgs e)
         {
@@ -611,5 +614,7 @@ namespace ver_01
             numeroBt = 8;
             _isBotao = true;
         }
+
+        #endregion
     }
 }
