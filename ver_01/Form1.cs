@@ -18,6 +18,8 @@ namespace ver_01
         #region Variaveis
         private SerialPort serialPort;
 
+        string RxString;
+
         private bool _isConnected = false;
         private bool _isCommunicaticating = false;
         private bool _verificaErro = false;
@@ -194,6 +196,16 @@ namespace ver_01
             }
         }
 
+        private void serialPort1_DataReceived(object sender, SerialDataReceivedEventArgs e)
+        {
+            RxString = serialPort.ReadExisting();              //le o dado disponível na serial            
+            this.Invoke(new EventHandler(trataDadoRecebido));   //chama outra thread para escrever o dado       
+        }
+
+        private void trataDadoRecebido(object sender, EventArgs e)
+        {
+            comboBoxPortas.Items.Add(RxString);
+        }
         public void verificandoErro(List<byte> lista)
         {
             _verificaErro = false;

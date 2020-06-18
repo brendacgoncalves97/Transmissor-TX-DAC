@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.btConnect = new System.Windows.Forms.Button();
             this.comboBoxPortas = new System.Windows.Forms.ComboBox();
             this.btLeituraCorrigida = new System.Windows.Forms.Button();
@@ -65,6 +66,7 @@
             this.LeituraMin = new System.Windows.Forms.NumericUpDown();
             this.label2 = new System.Windows.Forms.Label();
             this.btLimparJanelas = new System.Windows.Forms.Button();
+            this.serialPort1 = new System.IO.Ports.SerialPort(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.txtLeituraCorrigida)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtLeituraPura)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtOffSet)).BeginInit();
@@ -487,6 +489,10 @@
             this.btLimparJanelas.Text = "Limpar\r\nJanelas";
             this.btLimparJanelas.UseVisualStyleBackColor = true;
             this.btLimparJanelas.Click += new System.EventHandler(this.btLimparJanelas_Click);
+            //
+            // serialPort1
+            //
+            this.serialPort1.DataReceived += new System.IO.Ports.SerialDataReceivedEventHandler(serialPort1_DataReceived);
             // 
             // Form1
             // 
@@ -521,6 +527,11 @@
             this.ResumeLayout(false);
             this.PerformLayout();
 
+        }
+
+        private void SerialPort1_DataReceived(object sender, System.IO.Ports.SerialDataReceivedEventArgs e)
+        {
+            throw new System.NotImplementedException();
         }
 
         #endregion
@@ -562,6 +573,7 @@
         private System.Windows.Forms.Button btnSet20mA;
         private System.Windows.Forms.NumericUpDown Set20mA;
         private System.Windows.Forms.Label label8;
+        private System.IO.Ports.SerialPort serialPort1;
     }
 }
 
